@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Container } from "../../components/fragments/Container/Container";
 import { Section } from "../../components/fragments/Section/Section.fragment";
 
-import image01 from "../../assets/banner/image.png";
+import image01 from "../../assets/banner/image01.png";
 
 import styles from "./galeria.module.scss";
 

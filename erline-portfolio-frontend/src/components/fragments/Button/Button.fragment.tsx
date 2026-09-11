@@ -1,25 +1,40 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import styles from "./button.module.scss";
 
-type ButtonVariant = "primary" | "secondary";
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: ButtonVariant;
 }
 
-export function Button({children, variant = "primary", className, type = "button", ...props}: ButtonProps) {
-  const classes = [styles.button, styles[variant], className]
-    .filter(Boolean)
-    .join(" ");
-
+export function Button({
+  children,
+  className = "",
+  type = "button",
+  ...props
+}: ButtonProps) {
   return (
     <button
       type={type}
-      className={classes}
+      className={`${styles.button} ${className}`.trim()}
       {...props}
     >
-      {children}
+      <span className={styles.label}>{children}</span>
+
+      <span className={styles.icon} aria-hidden="true">
+        <svg
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 10H15M10 5L15 10L10 15"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
     </button>
   );
 }
