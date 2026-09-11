@@ -15,10 +15,12 @@ export function Contato() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const form = event.currentTarget;
+
     setIsSubmitting(true);
     setStatus("idle");
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
 
     const payload = {
       nome: formData.get("nome"),
@@ -39,7 +41,7 @@ export function Contato() {
         throw new Error("Erro ao enviar mensagem.");
       }
 
-      event.currentTarget.reset();
+      form.reset();
       setStatus("success");
     } catch {
       setStatus("error");
