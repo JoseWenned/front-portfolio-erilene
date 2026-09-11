@@ -1,13 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import Home from './page';
-import { describe, expect, it } from 'vitest';
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 
-describe('Home', () => {
-  it('deve renderizar o título do portfólio', () => {
+import Home from "./page";
+
+describe("Home", () => {
+  it("deve renderizar o Header", () => {
     render(<Home />);
 
     expect(
-      screen.getByRole('heading', { name: 'Portfólio Erline' })
+      screen.getByRole("navigation", {
+        name: "Navegação principal",
+      }),
     ).toBeInTheDocument();
   });
 });
