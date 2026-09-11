@@ -1,4 +1,11 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 
 const { sendMock } = vi.hoisted(() => ({
   sendMock: vi.fn(),
@@ -17,6 +24,20 @@ import { POST } from "./route";
 describe("POST /api/contato", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+
+    vi.stubEnv(
+      "RESEND_API_KEY",
+      "test-api-key",
+    );
+
+    vi.stubEnv(
+      "CONTACT_EMAIL_TO",
+      "test@example.com",
+    );
+  });
+
+  afterEach(() => {
+    vi.unstubAllEnvs();
   });
 
   it("deve enviar o contato com sucesso", async () => {
@@ -37,7 +58,8 @@ describe("POST /api/contato", () => {
         body: JSON.stringify({
           nome: "João",
           email: "joao@email.com",
-          mensagem: "Gostaria de conhecer os serviços.",
+          mensagem:
+            "Gostaria de conhecer os serviços.",
         }),
       },
     );
