@@ -4,6 +4,7 @@ import { Habilidades } from "../features/Habilidades/Habilidades.feature";
 import { Formacao } from "../features/Formacao/Formacao.feature";
 import { Experiencia } from "../features/Experiencia/Experiencia.feature";
 import { Certificacoes } from "../features/Certificacoes/Certificacoes.feature";
+import { Galeria } from "../features/Galeria/Galeria.feature";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Formacao />
       <Experiencia />
       <Certificacoes />
+      <Galeria />
     </>
   );
 }
