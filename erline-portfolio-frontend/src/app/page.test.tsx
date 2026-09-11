@@ -1,15 +1,16 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
 
 import Home from "./page";
+import { describe, expect, it } from "vitest";
 
 describe("Home", () => {
-  it("deve renderizar o Header", () => {
+  it("deve renderizar o Hero da página inicial", () => {
     render(<Home />);
 
     expect(
-      screen.getByRole("navigation", {
-        name: "Navegação principal",
+      screen.getByRole("heading", {
+        level: 1,
+        name: "Olá, eu sou Erline",
       }),
     ).toBeInTheDocument();
   });
