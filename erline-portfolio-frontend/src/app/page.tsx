@@ -6,6 +6,7 @@ import { Experiencia } from "../features/Experiencia/Experiencia.feature";
 import { Certificacoes } from "../features/Certificacoes/Certificacoes.feature";
 import { Galeria } from "../features/Galeria/Galeria.feature";
 import { Depoimentos } from "../features/Depoimento/Depoimentos.feature";
+import { Contato } from "../features/Contato/Contato.feature";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Certificacoes />
       <Galeria />
       <Depoimentos />
+      <Contato />
     </>
   );
 }
