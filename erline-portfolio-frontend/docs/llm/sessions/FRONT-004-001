@@ -1,0 +1,88 @@
+# FRONT-004-001 — Desenvolvimento do Hero
+
+## Objetivo
+
+Implementar a primeira seção específica da página inicial do portfólio da Erline, estabelecendo a estrutura visual e semântica do Hero.
+
+## Atividades
+
+* Criação da feature `Hero`;
+* Organização do componente em `src/features/Hero/`;
+* Composição utilizando `Section`, `Container` e `Button`;
+* Implementação do conteúdo profissional;
+* Integração da imagem principal;
+* Utilização do `next/image`;
+* Implementação do layout responsivo;
+* Criação dos testes unitários;
+* Integração do Hero com `page.tsx`;
+* Ajuste do teste da página inicial.
+
+## Decisões
+
+O Hero foi definido como uma feature específica do portfólio e, por isso, foi colocado em:
+
+```text
+src/features/Hero/
+```
+
+Os componentes `Section`, `Container` e `Button` permanecem no Design System por possuírem responsabilidades genéricas e reutilizáveis.
+
+A imagem principal utiliza `next/image`, aproveitando os recursos de otimização de imagens disponibilizados pelo Next.js.
+
+O `RootLayout` permanece responsável pela estrutura global da aplicação, enquanto a página inicial é responsável pela composição das features da página.
+
+## Responsividade
+
+O Hero utiliza CSS Grid no layout principal.
+
+Em telas menores, a composição passa para uma única coluna, permitindo que o conteúdo textual e a imagem sejam apresentados de forma vertical.
+
+## Testes
+
+Foram criados testes utilizando Vitest e React Testing Library para validar:
+
+* identificação profissional;
+* título principal;
+* descrição;
+* botão principal;
+* imagem;
+* identificação da seção inicial.
+
+Durante a implementação, foi identificado um problema relacionado ao dimensionamento do `next/image`.
+
+A solução adotada foi utilizar a propriedade `fill` em conjunto com um elemento pai configurado com `position: relative`, permitindo que a imagem ocupe corretamente o espaço destinado a ela.
+
+## Uso de LLM
+
+O LLM foi utilizado como ferramenta de apoio durante o desenvolvimento para:
+
+* discutir a organização da feature;
+* avaliar a separação entre `components` e `features`;
+* orientar a composição do Hero;
+* apoiar decisões relacionadas à responsividade;
+* discutir acessibilidade;
+* auxiliar na criação dos testes;
+* analisar o problema relacionado ao dimensionamento do `next/image`;
+* apoiar a documentação técnica da implementação.
+
+As decisões foram avaliadas durante o desenvolvimento e validadas através das ferramentas de qualidade do projeto.
+
+## Validação
+
+Foram executados:
+
+```bash
+npm test
+npm run lint
+npm run build
+```
+
+Resultado:
+
+* Testes: aprovado;
+* Lint: aprovado;
+* Build: aprovado.
+
+## Resultado
+
+O FRONT-004 foi concluído com a implementação do Hero, integração com a página inicial, responsividade, acessibilidade, testes automatizados e documentação técnica.
