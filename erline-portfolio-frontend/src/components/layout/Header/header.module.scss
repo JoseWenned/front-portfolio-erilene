@@ -1,47 +1,1064 @@
 .header {
+  position: fixed;
+  z-index: 1000;
+
+  top: 0;
+  left: 0;
+
   width: 100%;
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+
+  border-bottom: 1px solid
+    rgba(0, 0, 0, 0.06);
+
+  background: rgba(255, 255, 255, 0.88);
+
+  box-shadow:
+    0 4px 20px
+      rgba(0, 0, 0, 0.04);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .content {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 72px;
+
+  min-height: 76px;
+
   gap: var(--spacing-lg);
 }
 
+/* =========================
+   COMPENSAÇÃO DO HEADER FIXO
+   ========================= */
+
+:global(body) {
+  padding-top: 76px;
+}
+
+/* =========================
+   LOGO
+   ========================= */
+
 .logo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
   color: var(--color-text);
+
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
+
+  line-height: 1;
+
   text-decoration: none;
+
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease;
+}
+
+.logo:hover {
+  transform: translateY(-1px);
+
+  opacity: 0.9;
+}
+
+.logo:focus-visible {
+  outline: 2px solid
+    var(--color-primary-dark);
+
+  outline-offset: 6px;
+
+  border-radius: var(--radius-sm);
+}
+
+.logoMark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 12px;
+
+  background: var(--color-primary-dark);
+
+  color: #ffffff;
+
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-bold);
+
+  box-shadow:
+    0 8px 18px
+      rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 220ms
+      cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms ease;
+}
+
+.logo:hover .logoMark {
+  transform:
+    rotate(-4deg)
+    scale(1.04);
+
+  box-shadow:
+    0 10px 22px
+      rgba(0, 0, 0, 0.16);
+}
+
+.logoText {
+  letter-spacing: -0.025em;
+}
+
+/* =========================
+   NAVEGAÇÃO DESKTOP
+   ========================= */
+
+.desktopNavigation {
+  display: flex;
+  align-items: center;
 }
 
 .navigationList {
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
+
+  gap: clamp(
+    14px,
+    2vw,
+    28px
+  );
+
   margin: 0;
   padding: 0;
+
   list-style: none;
 }
 
+.navigationList li {
+  position: relative;
+}
+
 .navigationList a {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 10px 2px;
+
   color: var(--color-text-muted);
+
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
+
+  line-height: 1;
+
   text-decoration: none;
-  transition: color var(--transition-fast);
+
+  white-space: nowrap;
+
+  transition:
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.navigationList a::after {
+  position: absolute;
+
+  left: 0;
+  bottom: 3px;
+
+  width: 100%;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: var(--color-primary-dark);
+
+  content: "";
+
+  transform: scaleX(0);
+  transform-origin: center;
+
+  transition:
+    transform 260ms
+      cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .navigationList a:hover {
   color: var(--color-primary-dark);
+
+  transform: translateY(-1px);
+}
+
+.navigationList a:hover::after {
+  transform: scaleX(1);
 }
 
 .navigationList a:focus-visible {
-  outline: 2px solid var(--color-primary-dark);
-  outline-offset: 4px;
+  outline: 2px solid
+    var(--color-primary-dark);
+
+  outline-offset: 5px;
+
   border-radius: var(--radius-sm);
+}
+
+/* =========================
+   BOTÃO HAMBÚRGUER
+   ========================= */
+
+.menuButton {
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  padding: 0;
+
+  border: 1px solid
+    rgba(0, 0, 0, 0.08);
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  color: var(--color-text);
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 18px
+      rgba(0, 0, 0, 0.06);
+
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menuButton:hover {
+  border-color:
+    rgba(0, 0, 0, 0.14);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 22px
+      rgba(0, 0, 0, 0.09);
+
+  transform: translateY(-1px);
+}
+
+.menuButton:active {
+  transform: scale(0.95);
+}
+
+.menuButton:focus {
+  outline: none;
+}
+
+.menuButton:focus-visible {
+  outline: 2px solid
+    var(--color-primary-dark);
+
+  outline-offset: 4px;
+}
+
+.menuIcon {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 20px;
+  height: 18px;
+
+  gap: 4px;
+}
+
+.menuIcon span {
+  display: block;
+
+  width: 100%;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: currentColor;
+
+  transform-origin: center;
+
+  transition:
+    transform 280ms
+      cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease,
+    width 220ms ease;
+}
+
+.menuIcon span:nth-child(2) {
+  width: 72%;
+
+  align-self: flex-end;
+}
+
+.menuButton:hover .menuIcon span:nth-child(2) {
+  width: 100%;
+}
+
+.menuButtonOpen .menuIcon span:nth-child(1) {
+  transform:
+    translateY(6px)
+    rotate(45deg);
+}
+
+.menuButtonOpen .menuIcon span:nth-child(2) {
+  opacity: 0;
+
+  transform: scaleX(0);
+}
+
+.menuButtonOpen .menuIcon span:nth-child(3) {
+  transform:
+    translateY(-6px)
+    rotate(-45deg);
+}
+
+/* =========================
+   OVERLAY
+   ========================= */
+
+.overlay {
+  position: fixed;
+  z-index: 190;
+
+  inset: 0;
+
+  background: rgba(15, 15, 15, 0.38);
+
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 300ms ease,
+    visibility 300ms ease;
+
+  backdrop-filter: blur(2px);
+}
+
+.overlayVisible {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+/* =========================
+   MENU LATERAL MOBILE
+   ========================= */
+
+.mobileMenu {
+  position: fixed;
+  z-index: 2000;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(
+    70vw,
+    480px
+  );
+
+  min-width: 300px;
+
+  padding:
+    24px
+    clamp(
+      22px,
+      4vw,
+      42px
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #fafafa 65%,
+      rgba(255, 255, 255, 0.96) 100%
+    );
+
+  box-shadow:
+    -20px 0 60px
+      rgba(0, 0, 0, 0.16);
+
+  transform: translateX(100%);
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    transform 420ms
+      cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 420ms ease;
+}
+
+.mobileMenuOpen {
+  transform: translateX(0);
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+/* =========================
+   CABEÇALHO DO MENU
+   ========================= */
+
+.mobileMenuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-shrink: 0;
+
+  padding-bottom: 24px;
+
+  border-bottom: 1px solid
+    rgba(0, 0, 0, 0.07);
+}
+
+.mobileLogo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--color-text);
+
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-bold);
+
+  text-decoration: none;
+}
+
+.mobileLogo:focus-visible {
+  outline: 2px solid
+    var(--color-primary-dark);
+
+  outline-offset: 5px;
+
+  border-radius: var(--radius-sm);
+}
+
+.mobileLogoMark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 13px;
+
+  background: var(--color-primary-dark);
+
+  color: #ffffff;
+
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-bold);
+
+  box-shadow:
+    0 8px 20px
+      rgba(0, 0, 0, 0.12);
+}
+
+.mobileLogoText {
+  letter-spacing: -0.03em;
+}
+
+.closeButton {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid
+    rgba(0, 0, 0, 0.08);
+
+  border-radius: 13px;
+
+  background: rgba(0, 0, 0, 0.025);
+
+  color: var(--color-text);
+
+  cursor: pointer;
+
+  transition:
+    background-color 200ms ease,
+    transform 200ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.06);
+
+  transform: rotate(4deg);
+}
+
+.closeButton:focus {
+  outline: none;
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid
+    var(--color-primary-dark);
+
+  outline-offset: 4px;
+}
+
+.closeButton span {
+  position: absolute;
+
+  width: 18px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: currentColor;
+}
+
+.closeButton span:first-child {
+  transform: rotate(45deg);
+}
+
+.closeButton span:last-child {
+  transform: rotate(-45deg);
+}
+
+/* =========================
+   CONTEÚDO DA NAVEGAÇÃO
+   ========================= */
+
+.mobileMenuContent {
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding:
+    30px
+    0
+    24px;
+
+  scrollbar-width: thin;
+}
+
+.mobileNavigationHeader {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+
+  color: var(--color-primary-dark);
+
+  font-size: 0.68rem;
+  font-weight: var(--font-weight-bold);
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.mobileNavigationLine {
+  width: 30px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: var(--color-primary-dark);
+
+  opacity: 0.55;
+}
+
+.mobileNavigationList {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.mobileNavigationList li {
+  opacity: 0;
+
+  transform: translateX(18px);
+
+  transition:
+    opacity 300ms ease,
+    transform 400ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobileMenuOpen
+  .mobileNavigationList
+  li {
+  opacity: 1;
+
+  transform: translateX(0);
+
+  transition-delay:
+    calc(
+      var(--item-index) * 45ms + 100ms
+    );
+}
+
+.mobileNavigationList a {
+  display: grid;
+
+  grid-template-columns:
+    32px
+    minmax(0, 1fr)
+    24px;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-height: 54px;
+
+  padding: 8px 4px;
+
+  border-radius: 12px;
+
+  color: var(--color-text);
+
+  text-decoration: none;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.mobileNavigationList a:hover {
+  background:
+    rgba(0, 0, 0, 0.035);
+
+  color: var(--color-primary-dark);
+
+  transform: translateX(5px);
+}
+
+.mobileNavigationList a:focus-visible {
+  outline: 2px solid
+    var(--color-primary-dark);
+
+  outline-offset: -2px;
+}
+
+.mobileItemNumber {
+  color: var(--color-text-muted);
+
+  font-size: 0.62rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.mobileItemLabel {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.mobileItemArrow {
+  color: var(--color-primary-dark);
+
+  font-size: 1.1rem;
+
+  text-align: right;
+
+  opacity: 0.6;
+
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.mobileNavigationList a:hover
+  .mobileItemArrow {
+  opacity: 1;
+
+  transform: translateX(3px);
+}
+
+/* =========================
+   RODAPÉ / CONTATOS
+   ========================= */
+
+.mobileMenuFooter {
+  flex-shrink: 0;
+
+  padding-top: 20px;
+
+  border-top: 1px solid
+    rgba(0, 0, 0, 0.07);
+}
+
+.contactHeader {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 14px;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.68rem;
+  font-weight: var(--font-weight-bold);
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.contactLine {
+  flex: 1;
+
+  height: 1px;
+
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.contactLinks {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.contactLinks a {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 8px;
+
+  border-radius: 12px;
+
+  color: var(--color-text);
+
+  text-decoration: none;
+
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease,
+    color 180ms ease;
+}
+
+.contactLinks a:hover {
+  background:
+    rgba(0, 0, 0, 0.035);
+
+  color: var(--color-primary-dark);
+
+  transform: translateX(4px);
+}
+
+.contactLinks a:focus-visible {
+  outline: 2px solid
+    var(--color-primary-dark);
+
+  outline-offset: -2px;
+}
+
+.contactIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background:
+    rgba(0, 0, 0, 0.045);
+
+  color: var(--color-primary-dark);
+}
+
+.contactIcon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.contactLinks a > span:last-child {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
+  min-width: 0;
+}
+
+.contactLinks small {
+  color: var(--color-text-muted);
+
+  font-size: 0.62rem;
+
+  line-height: 1;
+}
+
+.contactLinks strong {
+  overflow: hidden;
+
+  color: inherit;
+
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-medium);
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileMenuSignature {
+  margin: 18px 0 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.68rem;
+
+  font-style: italic;
+
+  line-height: 1.4;
+
+  opacity: 0.7;
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 1100px) {
+  .content {
+    min-height: 72px;
+  }
+
+  .navigationList {
+    gap: 16px;
+  }
+
+  .navigationList a {
+    font-size: 0.78rem;
+  }
+
+  .logoMark {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 900px) {
+  .navigationList {
+    gap: 12px;
+  }
+
+  .navigationList a {
+    font-size: 0.74rem;
+  }
+
+  .logoText {
+    font-size: 1.15rem;
+  }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+  :global(body) {
+    padding-top: 68px;
+  }
+
+  .header {
+    background: rgba(255, 255, 255, 0.94);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .content {
+    min-height: 68px;
+  }
+
+  .desktopNavigation {
+    display: none;
+  }
+
+  .menuButton {
+    display: flex;
+  }
+
+  .mobileMenu {
+    width: 70vw;
+
+    min-width: 300px;
+
+    padding:
+      22px
+      clamp(
+        20px,
+        4vw,
+        34px
+      );
+  }
+}
+
+/* =========================
+   MOBILE PEQUENO
+   ========================= */
+
+@media (max-width: 480px) {
+  :global(body) {
+    padding-top: 64px;
+  }
+
+  .content {
+    min-height: 64px;
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logoMark {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    font-size: 1rem;
+  }
+
+  .logoText {
+    font-size: 1.08rem;
+  }
+
+  .menuButton {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 13px;
+  }
+
+  .mobileMenu {
+    width: 82vw;
+
+    min-width: 280px;
+
+    padding:
+      20px
+      18px;
+  }
+
+  .mobileMenuHeader {
+    padding-bottom: 20px;
+  }
+
+  .mobileMenuContent {
+    padding-top: 24px;
+  }
+
+  .mobileItemLabel {
+    font-size: 0.94rem;
+  }
+}
+
+/* =========================
+   TELAS MUITO PEQUENAS
+   ========================= */
+
+@media (max-width: 360px) {
+  .mobileMenu {
+    width: 88vw;
+
+    min-width: 0;
+  }
+
+  .mobileNavigationList a {
+    min-height: 50px;
+  }
+
+  .mobileItemNumber {
+    font-size: 0.56rem;
+  }
+
+  .mobileItemLabel {
+    font-size: 0.88rem;
+  }
+}
+
+/* =========================
+   REDUÇÃO DE MOVIMENTO
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .logo,
+  .logoMark,
+  .navigationList a,
+  .navigationList a::after,
+  .menuButton,
+  .menuIcon span,
+  .overlay,
+  .mobileMenu,
+  .mobileNavigationList li,
+  .mobileNavigationList a,
+  .mobileItemArrow,
+  .contactLinks a,
+  .closeButton {
+    transition: none;
+  }
 }
