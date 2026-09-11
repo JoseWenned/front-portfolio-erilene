@@ -3,6 +3,7 @@ import { Hero } from "../features/Hero/Hero.feature";
 import { Habilidades } from "../features/Habilidades/Habilidades.feature";
 import { Formacao } from "../features/Formacao/Formacao.feature";
 import { Experiencia } from "../features/Experiencia/Experiencia.feature";
+import { Certificacoes } from "../features/Certificacoes/Certificacoes.feature";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Habilidades />
       <Formacao />
       <Experiencia />
+      <Certificacoes />
     </>
   );
 }
