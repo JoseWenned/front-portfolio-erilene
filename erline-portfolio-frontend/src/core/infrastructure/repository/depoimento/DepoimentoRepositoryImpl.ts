@@ -1,6 +1,6 @@
-import { CriarDepoimentoData, DepoimentoRepository } from "@/core/domain/repository/depoimento/depoimentoRepository";
+import { CriarDepoimentoData, DepoimentoRepository } from "../../../../core/domain/repository/depoimento/depoimentoRepository";
 import { ApiClient } from "../../api/ApiClient";
-import { Depoimento } from "@/core/domain/entity/depoimento/depoimento";
+import { Depoimento } from "../../../../core/domain/entity/depoimento/depoimento";
 
 export class DepoimentoRepositoryImpl implements DepoimentoRepository {
   constructor(
