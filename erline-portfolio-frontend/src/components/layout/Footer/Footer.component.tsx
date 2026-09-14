@@ -13,11 +13,11 @@ export function Footer() {
         <div className={styles.content}>
           <div className={styles.brand}>
             <div className={styles.brandMark} aria-hidden="true">
-              <span>E</span>
+              <span>ES</span>
             </div>
 
             <div className={styles.brandContent}>
-              <p className={styles.name}>Erline</p>
+              <p className={styles.name}>Erilene Santiago</p>
               <span className={styles.role}>Personal Trainer</span>
             </div>
           </div>
@@ -42,7 +42,8 @@ export function Footer() {
             <ul className={styles.socialList}>
               <li>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/personal_erilene?stkn=MXVmNTByZ3pvenNybg=="
+                  target="_blank"
                   aria-label="Instagram"
                   className={styles.socialLink}
                 >
@@ -79,7 +80,7 @@ export function Footer() {
 
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © {currentYear} Erline. Todos os direitos reservados.
+            © {currentYear} Erilene Santiago. Todos os direitos reservados.
           </p>
 
           <p className={styles.signature}>
