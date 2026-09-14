@@ -80,7 +80,7 @@ export function Hero() {
             </p>
 
             <div className={styles.actions}>
-              <Button>
+              <Button href="#galeria">
                 Conheça meu trabalho
               </Button>
 
