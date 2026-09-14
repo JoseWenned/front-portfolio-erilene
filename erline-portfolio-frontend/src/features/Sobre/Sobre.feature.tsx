@@ -32,7 +32,7 @@ export function Sobre() {
 
             <div className={styles.description}>
               <p>
-                Sou Erline, profissional de Educação Física e
+                Sou Erilene Santiago, profissional de Educação Física e
                 Personal Trainer, apaixonada por ajudar pessoas a
                 desenvolverem uma relação mais saudável com o
                 movimento e com o próprio corpo.

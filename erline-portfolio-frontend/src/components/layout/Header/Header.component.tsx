@@ -81,11 +81,11 @@ export function Header() {
               onClick={handleNavigationClick}
             >
               <span className={styles.logoMark}>
-                E
+                ES
               </span>
 
               <span className={styles.logoText}>
-                Erline
+                Erilene Santiago
               </span>
             </Link>
 
@@ -156,11 +156,11 @@ export function Header() {
             tabIndex={isMenuOpen ? 0 : -1}
           >
             <span className={styles.mobileLogoMark}>
-              E
+              ES
             </span>
 
             <span className={styles.mobileLogoText}>
-              Erline
+              ErIlene Santiago
             </span>
           </Link>
 
@@ -244,7 +244,7 @@ export function Header() {
 
           <div className={styles.contactLinks}>
             <a
-              href={contactLinks.instagram}
+              href="https://www.instagram.com/personal_erilene?stkn=MXVmNTByZ3pvenNybg=="
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram da Erline"
@@ -288,7 +288,7 @@ export function Header() {
 
               <span>
                 <small>Instagram</small>
-                <strong>@erline</strong>
+                <strong>@personal_erilene</strong>
               </span>
             </a>
 
@@ -328,7 +328,7 @@ export function Header() {
 
               <span>
                 <small>E-mail</small>
-                <strong>Entre em contato</strong>
+                <strong>erilenesantiago4@gmail.com</strong>
               </span>
             </a>
 

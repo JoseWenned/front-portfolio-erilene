@@ -53,13 +53,24 @@ export function Contato() {
 
   return (
     <Section id="contato" className={styles.contato}>
-      <div className={styles.backgroundGlow} aria-hidden="true" />
-      <div className={styles.backgroundCircle} aria-hidden="true" />
+      <div
+        className={styles.backgroundGlow}
+        aria-hidden="true"
+      />
+
+      <div
+        className={styles.backgroundCircle}
+        aria-hidden="true"
+      />
 
       <Container>
         <div className={styles.header}>
           <div className={styles.headerLabel}>
-            <span className={styles.labelLine} aria-hidden="true" />
+            <span
+              className={styles.labelLine}
+              aria-hidden="true"
+            />
+
             <span>Contato</span>
           </div>
 
@@ -92,8 +103,15 @@ export function Contato() {
             </div>
 
             <div className={styles.infoList}>
-              <div className={styles.infoItem}>
-                <div className={styles.infoIcon} aria-hidden="true">
+              <a
+                href="#"
+                className={styles.infoItem}
+                aria-label="Entrar em contato pelo WhatsApp"
+              >
+                <div
+                  className={styles.infoIcon}
+                  aria-hidden="true"
+                >
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -104,17 +122,20 @@ export function Contato() {
                       stroke="currentColor"
                       strokeWidth="1.6"
                     />
+
                     <path
                       d="M4 7.5C4 6.95 4.45 6.5 5 6.5H6.5C7.05 6.5 7.5 6.95 7.5 7.5V9C7.5 9.55 7.05 10 6.5 10H5C4.45 10 4 9.55 4 9V7.5Z"
                       stroke="currentColor"
                       strokeWidth="1.6"
                     />
+
                     <path
                       d="M6.5 10C7.4 13.2 10.8 16.6 14 17.5"
                       stroke="currentColor"
                       strokeWidth="1.6"
                       strokeLinecap="round"
                     />
+
                     <path
                       d="M7.5 7.5C8.4 6.6 9.7 6 11 6H13C14.1 6 15 6.9 15 8V9.5"
                       stroke="currentColor"
@@ -129,21 +150,30 @@ export function Contato() {
                     WhatsApp
                   </span>
 
-                  <a
-                    href="#"
-                    className={styles.link}
-                  >
+                  <span className={styles.link}>
                     Entre em contato pelo WhatsApp
-                  </a>
+                  </span>
                 </div>
 
-                <span className={styles.infoArrow} aria-hidden="true">
+                <span
+                  className={styles.infoArrow}
+                  aria-hidden="true"
+                >
                   ↗
                 </span>
-              </div>
+              </a>
 
-              <div className={styles.infoItem}>
-                <div className={styles.infoIcon} aria-hidden="true">
+              <a
+                href="https://www.instagram.com/personal_erilene?stkn=MXVmNTByZ3pvenNybg=="
+                className={styles.infoItem}
+                aria-label="Acompanhar trabalho no Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div
+                  className={styles.infoIcon}
+                  aria-hidden="true"
+                >
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -158,6 +188,7 @@ export function Contato() {
                       stroke="currentColor"
                       strokeWidth="1.6"
                     />
+
                     <circle
                       cx="12"
                       cy="12"
@@ -165,6 +196,7 @@ export function Contato() {
                       stroke="currentColor"
                       strokeWidth="1.6"
                     />
+
                     <circle
                       cx="17.2"
                       cy="6.8"
@@ -179,21 +211,24 @@ export function Contato() {
                     Instagram
                   </span>
 
-                  <a
-                    href="#"
-                    className={styles.link}
-                  >
+                  <span className={styles.link}>
                     Acompanhe meu trabalho
-                  </a>
+                  </span>
                 </div>
 
-                <span className={styles.infoArrow} aria-hidden="true">
+                <span
+                  className={styles.infoArrow}
+                  aria-hidden="true"
+                >
                   ↗
                 </span>
-              </div>
+              </a>
 
               <div className={styles.infoItem}>
-                <div className={styles.infoIcon} aria-hidden="true">
+                <div
+                  className={styles.infoIcon}
+                  aria-hidden="true"
+                >
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -204,6 +239,7 @@ export function Contato() {
                       stroke="currentColor"
                       strokeWidth="1.6"
                     />
+
                     <circle
                       cx="12"
                       cy="10"

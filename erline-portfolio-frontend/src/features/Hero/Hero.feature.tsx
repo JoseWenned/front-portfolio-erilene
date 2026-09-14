@@ -71,7 +71,7 @@ export function Hero() {
 
             <h1 className={styles.title}>
               Olá, eu sou
-              <span>Erline</span>
+              <span>Erilene Santiago</span>
             </h1>
 
             <p className={styles.description}>
@@ -80,7 +80,7 @@ export function Hero() {
             </p>
 
             <div className={styles.actions}>
-              <Button>
+              <Button href="#galeria">
                 Conheça meu trabalho
               </Button>
 

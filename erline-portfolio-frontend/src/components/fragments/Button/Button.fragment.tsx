@@ -1,8 +1,8 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import styles from "./button.module.scss";
 
 interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode;
 }
 
@@ -13,7 +13,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-    <button
+    <a
       type={type}
       className={`${styles.button} ${className}`.trim()}
       {...props}
@@ -35,6 +35,6 @@ export function Button({
           />
         </svg>
       </span>
-    </button>
+    </a>
   );
 }
