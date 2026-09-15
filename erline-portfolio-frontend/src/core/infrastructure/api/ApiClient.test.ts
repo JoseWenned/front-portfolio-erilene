@@ -81,6 +81,64 @@ describe("ApiClient", () => {
     expect(resultado).toEqual(response);
   });
 
+  it("deve realizar upload de uma imagem", async () => {
+    const response = {
+      url: "/uploads/depoimentos/imagem.jpg",
+    };
+
+    const fetchMock = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValue(
+        new Response(JSON.stringify(response), {
+          status: 201,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }),
+      );
+
+    const apiClient = new ApiClient("http://localhost:8080");
+
+    const file = new File(
+      ["conteudo da imagem"],
+      "imagem.jpg",
+      {
+        type: "image/jpeg",
+      },
+    );
+
+    const resultado = await apiClient.upload(
+      "/api/uploads/imagem",
+      file,
+    );
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    const [url, options] = fetchMock.mock.calls[0];
+
+    expect(url).toBe(
+      "http://localhost:8080/api/uploads/imagem",
+    );
+
+    expect(options).toBeDefined();
+    expect(options?.method).toBe("POST");
+
+    expect(options?.headers).toBeUndefined();
+
+    expect(options?.body).toBeInstanceOf(FormData);
+
+    const formData = options?.body as FormData;
+
+    expect(formData.get("file")).toBeInstanceOf(File);
+
+    const uploadedFile = formData.get("file") as File;
+
+    expect(uploadedFile.name).toBe("imagem.jpg");
+    expect(uploadedFile.type).toBe("image/jpeg");
+
+    expect(resultado).toEqual(response);
+  });
+
   it("deve lançar erro quando a API retornar uma resposta de erro", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(
       new Response(null, {

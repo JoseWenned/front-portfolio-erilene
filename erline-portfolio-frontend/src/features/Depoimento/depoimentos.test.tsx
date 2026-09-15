@@ -1,9 +1,51 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Depoimentos } from "./Depoimentos.feature";
-import { describe, expect, it } from "vitest";
+
+const executarMock = vi.fn();
+
+vi.mock(
+  "../../core/infrastructure/composition/depoimento/depoimentoDependencies",
+  () => ({
+    depoimentoDependencies: {
+      listarDepoimentosUseCase: {
+        executar: executarMock,
+      },
+    },
+  }),
+);
 
 describe("Depoimentos", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+
+    executarMock.mockResolvedValue([
+      {
+        id: "1",
+        nome: "Maria",
+        comentario:
+          "Excelente acompanhamento e atenção durante os treinos.",
+        nota: 5,
+        fotoUrl: null,
+        status: "APROVADO",
+        createdAt: "2026-09-14T10:00:00",
+        updatedAt: "2026-09-14T10:00:00",
+      },
+      {
+        id: "2",
+        nome: "João",
+        comentario:
+          "Profissional dedicada, atenciosa e comprometida.",
+        nota: 5,
+        fotoUrl: null,
+        status: "APROVADO",
+        createdAt: "2026-09-14T11:00:00",
+        updatedAt: "2026-09-14T11:00:00",
+      },
+    ]);
+  });
+
   it("deve renderizar a identificação da seção", () => {
     render(<Depoimentos />);
 
@@ -18,25 +60,29 @@ describe("Depoimentos", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: "Experiências de quem treina comigo",
+        name: "Histórias de quem vive o movimento.",
       }),
     ).toBeInTheDocument();
   });
 
-  it("deve renderizar os depoimentos", () => {
+  it("deve carregar e renderizar os depoimentos através do use case", async () => {
     render(<Depoimentos />);
 
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          /Excelente acompanhamento e atenção durante os treinos/,
+        ),
+      ).toBeInTheDocument();
+    });
+
     expect(
-      screen.getByText(
-        /Excelente acompanhamento e atenção durante os treinos/,
-      ),
+      screen.getByText("Maria"),
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(
-        /Profissional dedicada, atenciosa e comprometida/,
-      ),
-    ).toBeInTheDocument();
+      executarMock,
+    ).toHaveBeenCalledTimes(1);
   });
 
   it("deve renderizar o formulário de depoimento", () => {
@@ -45,7 +91,7 @@ describe("Depoimentos", () => {
     expect(
       screen.getByRole("heading", {
         level: 3,
-        name: "Compartilhe sua experiência",
+        name: "Compartilhe sua história.",
       }),
     ).toBeInTheDocument();
 
@@ -70,5 +116,35 @@ describe("Depoimentos", () => {
     expect(
       document.querySelector("#depoimentos"),
     ).toBeInTheDocument();
+  });
+
+  it("deve exibir mensagem quando não houver depoimentos", async () => {
+    executarMock.mockResolvedValueOnce([]);
+
+    render(<Depoimentos />);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          "Ainda não há depoimentos publicados.",
+        ),
+      ).toBeInTheDocument();
+    });
+  });
+
+  it("deve exibir mensagem quando ocorrer erro ao carregar os depoimentos", async () => {
+    executarMock.mockRejectedValueOnce(
+      new Error("Erro na API"),
+    );
+
+    render(<Depoimentos />);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          "Não foi possível carregar os depoimentos.",
+        ),
+      ).toBeInTheDocument();
+    });
   });
 });
