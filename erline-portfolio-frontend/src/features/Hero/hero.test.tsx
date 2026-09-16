@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 
-import { Hero } from "./Hero.feature";
 import { describe, expect, it } from "vitest";
+
+import { Hero } from "./Hero.feature";
 
 describe("Hero", () => {
   it("deve renderizar a identificação profissional", () => {
@@ -18,7 +19,7 @@ describe("Hero", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Olá, eu sou Erline",
+        name: "Olá, eu sou Erilene Santiago",
       }),
     ).toBeInTheDocument();
   });
@@ -37,18 +38,18 @@ describe("Hero", () => {
     render(<Hero />);
 
     expect(
-      screen.getByRole("button", {
+      screen.getByRole("link", {
         name: "Conheça meu trabalho",
       }),
     ).toBeInTheDocument();
   });
 
-  it("deve renderizar a imagem da Erline", () => {
+  it("deve renderizar a imagem inicial da Erline", () => {
     render(<Hero />);
 
     expect(
       screen.getByRole("img", {
-        name: "Erline, Personal Trainer",
+        name: "Erline realizando atividade física",
       }),
     ).toBeInTheDocument();
   });

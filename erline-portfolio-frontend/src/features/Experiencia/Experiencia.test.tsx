@@ -18,8 +18,7 @@ describe("Experiencia", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name:
-          "Experiência profissional e acompanhamento personalizado",
+        name: "Experiência que transforma movimento.",
       }),
     ).toBeInTheDocument();
   });
