@@ -76,8 +76,8 @@ export function Contato() {
 
           <div className={styles.headerContent}>
             <h2 className={styles.title}>
-              Vamos conversar sobre
-              <span> seus objetivos.</span>
+              Vamos conversar sobre{" "}
+              <span>seus objetivos.</span>
             </h2>
 
             <p className={styles.description}>

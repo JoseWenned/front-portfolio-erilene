@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 
-import { Sobre } from "./Sobre.feature";
 import { describe, expect, it } from "vitest";
+
+import { Sobre } from "./Sobre.feature";
 
 describe("Sobre", () => {
   it("deve renderizar a identificação da seção", () => {
@@ -18,7 +19,7 @@ describe("Sobre", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: "Movimento, saúde e qualidade de vida",
+        name: "Movimento, saúde e qualidade de vida.",
       }),
     ).toBeInTheDocument();
   });
@@ -28,7 +29,7 @@ describe("Sobre", () => {
 
     expect(
       screen.getByText(
-        /Sou Erline, profissional de Educação Física e Personal Trainer/,
+        /Sou Erilene Santiago, profissional de Educação Física e Personal Trainer/,
       ),
     ).toBeInTheDocument();
   });

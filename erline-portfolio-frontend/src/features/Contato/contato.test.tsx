@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 
-import { Contato } from "./Contato.feature";
 import { describe, expect, it } from "vitest";
+
+import { Contato } from "./Contato.feature";
 
 describe("Contato", () => {
   it("deve renderizar a identificação da seção", () => {
@@ -18,7 +19,7 @@ describe("Contato", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: "Vamos conversar sobre seus objetivos",
+        name: "Vamos conversar sobre seus objetivos.",
       }),
     ).toBeInTheDocument();
   });
@@ -45,7 +46,7 @@ describe("Contato", () => {
     expect(
       screen.getByRole("heading", {
         level: 3,
-        name: "Envie uma mensagem",
+        name: "Envie uma mensagem.",
       }),
     ).toBeInTheDocument();
 
@@ -76,3 +77,4 @@ describe("Contato", () => {
     ).toBeInTheDocument();
   });
 });
+

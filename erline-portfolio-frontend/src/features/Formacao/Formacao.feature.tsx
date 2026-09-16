@@ -39,7 +39,7 @@ export function Formacao() {
 
           <div className={styles.headerContent}>
             <h2 className={styles.title}>
-              Conhecimento que
+              Conhecimento que{" "}
               <span>fundamenta minha atuação.</span>
             </h2>
 

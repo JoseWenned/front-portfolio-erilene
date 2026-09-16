@@ -26,7 +26,7 @@ export function Sobre() {
             </div>
 
             <h2 className={styles.title}>
-              Movimento,
+              Movimento,{" "}
               <span>saúde e qualidade de vida.</span>
             </h2>
 

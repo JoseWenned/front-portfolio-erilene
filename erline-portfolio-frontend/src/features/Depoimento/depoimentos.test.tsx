@@ -1,26 +1,55 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { Depoimentos } from "./Depoimentos.feature";
-
-const executarMock = vi.fn();
+const {
+  listarExecutarMock,
+  criarExecutarMock,
+  uploadMock,
+} = vi.hoisted(() => ({
+  listarExecutarMock: vi.fn(),
+  criarExecutarMock: vi.fn(),
+  uploadMock: vi.fn(),
+}));
 
 vi.mock(
   "../../core/infrastructure/composition/depoimento/depoimentoDependencies",
   () => ({
     depoimentoDependencies: {
       listarDepoimentosUseCase: {
-        executar: executarMock,
+        executar: listarExecutarMock,
+      },
+      criarDepoimentoUseCase: {
+        executar: criarExecutarMock,
       },
     },
   }),
 );
 
+vi.mock(
+  "../../core/infrastructure/api/ApiClient",
+  () => ({
+    ApiClient: class {
+      upload = uploadMock;
+    },
+  }),
+);
+
+vi.mock(
+  "../../core/infrastructure/api/apiConfig",
+  () => ({
+    apiConfig: {
+      baseUrl: "http://localhost:8080",
+    },
+  }),
+);
+
+import { Depoimentos } from "./Depoimentos.feature";
+
 describe("Depoimentos", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    executarMock.mockResolvedValue([
+    listarExecutarMock.mockResolvedValue([
       {
         id: "1",
         nome: "Maria",
@@ -44,13 +73,28 @@ describe("Depoimentos", () => {
         updatedAt: "2026-09-14T11:00:00",
       },
     ]);
+
+    criarExecutarMock.mockResolvedValue({
+      id: "3",
+      nome: "Carlos",
+      comentario: "Excelente experiência.",
+      nota: 5,
+      fotoUrl: "/uploads/carlos.jpg",
+      status: "PENDENTE",
+      createdAt: "2026-09-14T12:00:00",
+      updatedAt: "2026-09-14T12:00:00",
+    });
+
+    uploadMock.mockResolvedValue({
+      url: "/uploads/foto.jpg",
+    });
   });
 
   it("deve renderizar a identificação da seção", () => {
     render(<Depoimentos />);
 
     expect(
-      screen.getByText("Depoimentos"),
+      screen.getByText("DEPOIMENTOS"),
     ).toBeInTheDocument();
   });
 
@@ -81,7 +125,7 @@ describe("Depoimentos", () => {
     ).toBeInTheDocument();
 
     expect(
-      executarMock,
+      listarExecutarMock,
     ).toHaveBeenCalledTimes(1);
   });
 
@@ -96,16 +140,20 @@ describe("Depoimentos", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByLabelText("Nome"),
+      screen.getByLabelText("Seu nome"),
     ).toBeInTheDocument();
 
     expect(
-      screen.getByLabelText("Depoimento"),
+      screen.getByLabelText("Sua experiência"),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByLabelText("Foto"),
     ).toBeInTheDocument();
 
     expect(
       screen.getByRole("button", {
-        name: "Enviar depoimento",
+        name: /Enviar depoimento/,
       }),
     ).toBeInTheDocument();
   });
@@ -119,21 +167,21 @@ describe("Depoimentos", () => {
   });
 
   it("deve exibir mensagem quando não houver depoimentos", async () => {
-    executarMock.mockResolvedValueOnce([]);
+    listarExecutarMock.mockResolvedValueOnce([]);
 
     render(<Depoimentos />);
 
     await waitFor(() => {
       expect(
         screen.getByText(
-          "Ainda não há depoimentos publicados.",
+          /Ainda não temos depoimentos publicados/,
         ),
       ).toBeInTheDocument();
     });
   });
 
   it("deve exibir mensagem quando ocorrer erro ao carregar os depoimentos", async () => {
-    executarMock.mockRejectedValueOnce(
+    listarExecutarMock.mockRejectedValueOnce(
       new Error("Erro na API"),
     );
 
@@ -142,7 +190,7 @@ describe("Depoimentos", () => {
     await waitFor(() => {
       expect(
         screen.getByText(
-          "Não foi possível carregar os depoimentos.",
+          "Não foi possível carregar os depoimentos no momento.",
         ),
       ).toBeInTheDocument();
     });

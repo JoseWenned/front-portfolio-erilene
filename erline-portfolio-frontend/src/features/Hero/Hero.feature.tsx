@@ -7,7 +7,7 @@ import Image06 from "../../assets/banner/image06.png";
 
 import { Button } from "../../components/fragments/Button/Button.fragment";
 import { Container } from "../../components/fragments/Container/Container";
-import { HeroCarousel } from "@/components/fragments/HeroCarousel/HeroCarousel";
+import { HeroCarousel } from "../../components/fragments/HeroCarousel/HeroCarousel";
 import { Section } from "../../components/fragments/Section/Section.fragment";
 
 import styles from "./hero.module.scss";
@@ -70,7 +70,7 @@ export function Hero() {
             </div>
 
             <h1 className={styles.title}>
-              Olá, eu sou
+              Olá, eu sou{" "}
               <span>Erilene Santiago</span>
             </h1>
 

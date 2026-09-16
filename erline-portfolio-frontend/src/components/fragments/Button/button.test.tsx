@@ -1,88 +1,130 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import styles from "./button.module.scss";
 import { describe, expect, it, vi } from "vitest";
+
+import styles from "./button.module.scss";
 import { Button } from "./Button.fragment";
 
 describe("Button", () => {
   it("deve renderizar o conteúdo recebido", () => {
-    render(<Button>Enviar</Button>);
+    render(<Button href="#contato">Enviar</Button>);
 
     expect(
-      screen.getByRole("button", {
+      screen.getByRole("link", {
         name: "Enviar",
       }),
     ).toBeInTheDocument();
   });
 
-  it("deve usar a variante primary por padrão", () => {
-    render(<Button>Enviar</Button>);
-
-    expect(screen.getByRole("button")).toHaveClass(
-      styles.primary,
-    );
-  });
-
-  it("deve permitir a variante secondary", () => {
+  it("deve renderizar o link com o href informado", () => {
     render(
-      <Button variant="secondary">
-        Saiba mais
-      </Button>,
-    );
-
-    expect(screen.getByRole("button")).toHaveClass(
-      styles.secondary,
-    );
-  });
-
-  it("deve respeitar o estado disabled", () => {
-    render(
-      <Button disabled>
-        Enviar
-      </Button>,
-    );
-
-    expect(screen.getByRole("button")).toBeDisabled();
-  });
-
-  it("deve aceitar propriedades nativas do button", () => {
-    render(
-      <Button aria-label="Enviar formulário">
-        Enviar
+      <Button href="#contato">
+        Conheça meu trabalho
       </Button>,
     );
 
     expect(
-      screen.getByRole("button", {
-        name: "Enviar formulário",
+      screen.getByRole("link", {
+        name: "Conheça meu trabalho",
       }),
-    ).toBeInTheDocument();
+    ).toHaveAttribute("href", "#contato");
+  });
+
+  it("deve aplicar a classe padrão do componente", () => {
+    render(
+      <Button href="#contato">
+        Conheça meu trabalho
+      </Button>,
+    );
+
+    expect(
+      screen.getByRole("link"),
+    ).toHaveClass(styles.button);
+  });
+
+  it("deve permitir adicionar uma classe personalizada", () => {
+    render(
+      <Button
+        href="#contato"
+        className="custom-button"
+      >
+        Conheça meu trabalho
+      </Button>,
+    );
+
+    expect(
+      screen.getByRole("link"),
+    ).toHaveClass(
+      styles.button,
+      "custom-button",
+    );
+  });
+
+  it("deve aceitar propriedades nativas do link", () => {
+    render(
+      <Button
+        href="https://example.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Acessar site"
+      >
+        Site
+      </Button>,
+    );
+
+    const link = screen.getByRole("link", {
+      name: "Acessar site",
+    });
+
+    expect(link).toHaveAttribute(
+      "href",
+      "https://example.com",
+    );
+
+    expect(link).toHaveAttribute(
+      "target",
+      "_blank",
+    );
+
+    expect(link).toHaveAttribute(
+      "rel",
+      "noopener noreferrer",
+    );
   });
 
   it("deve executar o evento onClick", () => {
     const handleClick = vi.fn();
 
     render(
-      <Button onClick={handleClick}>
-        Enviar
+      <Button
+        href="#contato"
+        onClick={handleClick}
+      >
+        Contato
       </Button>,
     );
 
-    fireEvent.click(screen.getByRole("button"));
+    fireEvent.click(
+      screen.getByRole("link", {
+        name: "Contato",
+      }),
+    );
 
     expect(handleClick).toHaveBeenCalledOnce();
   });
 
-  it("deve permitir sobrescrever o type padrão", () => {
+  it("deve permitir sobrescrever o className", () => {
     render(
-      <Button type="submit">
-        Enviar
+      <Button
+        href="#sobre"
+        className="button-custom"
+      >
+        Saiba mais
       </Button>,
     );
 
-    expect(screen.getByRole("button")).toHaveAttribute(
-      "type",
-      "submit",
-    );
+    expect(
+      screen.getByRole("link"),
+    ).toHaveClass("button-custom");
   });
 });

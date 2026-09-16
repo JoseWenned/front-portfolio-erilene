@@ -152,7 +152,7 @@ describe("ApiClient", () => {
     await expect(
       apiClient.get("/api/depoimentos"),
     ).rejects.toThrow(
-      "Erro na requisição HTTP: 400 Bad Request",
+      "Erro na requisição HTTP: 400 Bad Request | GET http://localhost:8080/api/depoimentos",
     );
   });
 

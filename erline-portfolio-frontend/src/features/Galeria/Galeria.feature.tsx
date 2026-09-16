@@ -133,8 +133,8 @@ export function Galeria() {
           <div className={styles.headerContent}>
             <div>
               <h2 className={styles.title}>
-                Movimento
-                <span> na prática.</span>
+                Movimento{" "}
+                <span>na prática.</span>
               </h2>
 
               <p className={styles.description}>

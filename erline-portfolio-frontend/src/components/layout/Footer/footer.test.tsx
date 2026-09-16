@@ -1,14 +1,15 @@
 import { render, screen } from "@testing-library/react";
 
 import { describe, expect, it } from "vitest";
+
 import { Footer } from "./Footer.component";
 
 describe("Footer", () => {
-  it("deve renderizar a identidade da Erline", () => {
+  it("deve renderizar a identidade da Erilene", () => {
     render(<Footer />);
 
     expect(
-      screen.getByText("Erline"),
+      screen.getByText("Erilene Santiago"),
     ).toBeInTheDocument();
   });
 
@@ -19,7 +20,7 @@ describe("Footer", () => {
 
     expect(
       screen.getByText(
-        `© ${currentYear} Erline. Todos os direitos reservados.`,
+        `© ${currentYear} Erilene Santiago. Todos os direitos reservados.`,
       ),
     ).toBeInTheDocument();
   });

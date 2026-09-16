@@ -192,7 +192,7 @@ export function Habilidades() {
 
           <div className={styles.headerContent}>
             <h2 className={styles.title}>
-              Conhecimento que
+              Conhecimento que{" "}
               <span>gera movimento.</span>
             </h2>
 

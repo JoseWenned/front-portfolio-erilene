@@ -28,8 +28,8 @@ export function Experiencia() {
 
           <div className={styles.headerContent}>
             <h2 className={styles.title}>
-              Experiência que
-              <span> transforma movimento.</span>
+              Experiência que{" "}
+              <span>transforma movimento.</span>
             </h2>
 
             <p className={styles.description}>

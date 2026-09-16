@@ -47,8 +47,8 @@ export function Certificacoes() {
 
           <div className={styles.headerContent}>
             <h2 className={styles.title}>
-              Conhecimento que
-              <span> acompanha a prática.</span>
+              Conhecimento que{" "}
+              <span>acompanha a prática.</span>
             </h2>
 
             <p className={styles.description}>
@@ -123,8 +123,8 @@ export function Certificacoes() {
           </div>
 
           <p>
-            Aprendizado contínuo,
-            <span> evolução constante.</span>
+            Aprendizado contínuo,{" "}
+            <span>evolução constante.</span>
           </p>
         </div>
       </Container>
