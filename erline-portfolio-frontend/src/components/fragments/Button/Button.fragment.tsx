@@ -1,4 +1,8 @@
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import type {
+  AnchorHTMLAttributes,
+  ReactNode,
+} from "react";
+
 import styles from "./button.module.scss";
 
 interface ButtonProps
@@ -9,18 +13,19 @@ interface ButtonProps
 export function Button({
   children,
   className = "",
-  type = "button",
   ...props
 }: ButtonProps) {
   return (
     <a
-      type={type}
       className={`${styles.button} ${className}`.trim()}
       {...props}
     >
       <span className={styles.label}>{children}</span>
 
-      <span className={styles.icon} aria-hidden="true">
+      <span
+        className={styles.icon}
+        aria-hidden="true"
+      >
         <svg
           viewBox="0 0 20 20"
           fill="none"
