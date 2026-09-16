@@ -18,7 +18,7 @@ describe("Formacao", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: "Conhecimento que fundamenta minha atuação",
+        name: "Conhecimento que fundamenta minha atuação.",
       }),
     ).toBeInTheDocument();
   });
