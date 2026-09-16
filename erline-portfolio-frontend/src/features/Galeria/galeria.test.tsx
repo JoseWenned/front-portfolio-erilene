@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 
-import { Galeria } from "./Galeria.feature";
 import { describe, expect, it } from "vitest";
+
+import { Galeria } from "./Galeria.feature";
 
 describe("Galeria", () => {
   it("deve renderizar a identificação da seção", () => {
@@ -18,7 +19,7 @@ describe("Galeria", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: "Movimento na prática",
+        name: "Movimento na prática.",
       }),
     ).toBeInTheDocument();
   });
@@ -28,7 +29,7 @@ describe("Galeria", () => {
 
     expect(
       screen.getByText(
-        /Um pouco da minha rotina profissional/,
+        /Um pouco da rotina profissional/,
       ),
     ).toBeInTheDocument();
   });
@@ -62,3 +63,4 @@ describe("Galeria", () => {
     ).toBeInTheDocument();
   });
 });
+

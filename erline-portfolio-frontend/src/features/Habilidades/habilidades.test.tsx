@@ -18,7 +18,7 @@ describe("Habilidades", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: "Conhecimento para transformar movimento em resultado",
+        name: "Conhecimento que gera movimento.",
       }),
     ).toBeInTheDocument();
   });
